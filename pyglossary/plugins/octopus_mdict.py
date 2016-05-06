@@ -81,7 +81,7 @@ class Reader(object):
         if not isdir(self._dataDir):
             os.makedirs(self._dataDir)
         for key, value in self._mdd.items():
-            fpath = ''.join([self._dataDir, key.replace('\\', os.path.sep)]);
+            fpath = ''.join([self._dataDir, key.decode('utf-8').replace('\\', os.path.sep)]);
             if not isdir(dirname(fpath)):
                 os.makedirs(dirname(fpath))
             log.debug('saving MDict data file: %s'%fpath)

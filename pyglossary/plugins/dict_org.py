@@ -53,15 +53,16 @@ def installToDictd(filename, title=''):## filename is without extention (neither
     fname = split(filename)[1]
     if not title:
         title = fname
-    open('/var/lib/dictd/db.list', 'ab').write('''
+    handle = open('/var/lib/dictd/db.list', 'ab')
+    handle.write(('''
 
 database %s
 {
     data /usr/share/dictd/%s%s
     index /usr/share/dictd/%s.index
 }
-'''%(title, fname, dictPostfix, fname))
-
+'''%(title, fname, dictPostfix, fname)).encode('utf-8'))
+   handle.close()
 
 class Reader(object):
     def __init__(self, glos):
